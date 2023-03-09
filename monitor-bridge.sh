@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# based on https://www.psattack.com/articles/20160410/setting-up-a-wireless-access-point-in-kali/
+# based on https://github.com/readloud/kali-router
+
 # Interface that we want to monitor on
 WIRED_MONITOR_INTERFACE=eth1
 # Bridge between the above two interfaces (created on demand)
@@ -28,6 +29,7 @@ function ctrl_c(){
     sudo brctl delbr $BRIDGE_INTERFACE
 }
 
+# option to run script with " --down" to clear bridge
 if [ "$1" = "--down" ];
 then
 echo Killing processes.
@@ -40,6 +42,7 @@ sudo brctl delbr $BRIDGE_INTERFACE
 
 exit 0
 fi
+
 
 # delete all addresses for wired
 sudo ip addr flush dev $WIRED_MONITOR_INTERFACE
